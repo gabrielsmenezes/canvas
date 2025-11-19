@@ -5,9 +5,9 @@ import { PieceList } from "./piece/PieceList";
 import { Stack, Box } from "@mui/material";
 import {PlacedPiece} from "@/entities/PlacedPiece";
 import {Piece} from "@/entities/Piece";
-import { ChapaEditor } from "@/_pages/canvas/ui/ChapaEditor";
+import { SheetEditor } from "@/_pages/canvas/ui/SheetEditor";
 import {PlacedPieceDetail} from "@/_pages/canvas/ui/PlacedPieceDetail";
-import {usePiecesContext} from "@/contexts/PiecesContext";
+import {usePiecesContext} from "@/_pages/canvas/contexts/PiecesContext";
 
 function isColliding(newPiece: PlacedPiece, existing: PlacedPiece[]) {
 
@@ -89,7 +89,7 @@ export function EditorPage() {
         <PieceList />
 
         <Box>
-          <ChapaEditor
+          <SheetEditor
               chapaWidth={800}
               chapaHeight={400}
               placed={placed}

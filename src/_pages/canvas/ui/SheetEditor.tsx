@@ -13,7 +13,7 @@ type Props = {
   onPlace: (piece: Piece, x: number, y: number) => void;
 };
 
-export function ChapaEditor({
+export function SheetEditor({
                               chapaWidth,
                               chapaHeight,
                               placed,

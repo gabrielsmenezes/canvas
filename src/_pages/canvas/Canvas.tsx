@@ -1,9 +1,9 @@
 "use client";
 
 
-import {DragDropProvider} from "@/contexts/DragDropProvider";
+import {DragDropProvider} from "@/_pages/canvas/contexts/DragDropProvider";
 import {EditorPage} from "@/_pages/canvas/ui/EditorPage";
-import {PiecesProvider} from "@/contexts/PiecesContext";
+import {PiecesProvider} from "@/_pages/canvas/contexts/PiecesContext";
 
 export default function CanvasPage() {
   return (
