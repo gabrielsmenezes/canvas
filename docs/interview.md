@@ -8,6 +8,7 @@ Releases:
     ![](C:\Users\mrgab\Documents\gabrielsmenezes\canvas\docs\v0.0.3.png)
   - v0.0.4 - Layout and state management improvements
     ![](C:\Users\mrgab\Documents\gabrielsmenezes\canvas\docs\v0.0.4.png)
+  - v0.0.5 - Mocking the API call
 
 Highlights:
 - Simplified Feature-sliced architecture (directory structure)

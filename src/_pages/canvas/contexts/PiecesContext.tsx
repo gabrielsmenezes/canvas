@@ -1,5 +1,6 @@
-import {ReactNode, createContext, useContext, useMemo, useState} from "react"
+import {ReactNode, createContext, useContext, useMemo, useState, useEffect} from "react"
 import {Piece} from "@/entities/Piece";
+import {findAllPiecesFromAPI} from "@/_pages/canvas/api/findAllPiecesFromAPI";
 
 interface PiecesContextType {
   pieces: Piece[]
@@ -9,10 +10,12 @@ interface PiecesContextType {
 const PiecesContext = createContext<PiecesContextType | undefined>(undefined)
 
 export function PiecesProvider({children}: Readonly<{ children: ReactNode }>) {
-  const [_pieces, setPieces] = useState<Piece[]>([
-    {id: "1", label: "Porta", width: 120, height: 200, quantity: 2},
-    {id: "2", label: "Base", width: 100, height: 50, quantity: 1},
-  ]);
+
+  const [_pieces, setPieces] = useState<Piece[]>([]);
+
+  useEffect(() => {
+    findAllPiecesFromAPI().then(pieces => setPieces([...pieces]))
+  }, [])
 
   const pieces = useMemo(
       () => _pieces.filter((p) => p.quantity > 0),
