@@ -16,7 +16,7 @@ export function PiecesProvider({children}: Readonly<{ children: ReactNode }>) {
   const [_pieces, setPieces] = useState<Piece[]>([]);
 
   useEffect(() => {
-    findAllPiecesFromAPI().then(pieces => setPieces([...pieces]))
+    findAllPiecesFromAPI().then(pieces => setPieces(pieces))
   }, [])
 
   const pieces = useMemo(

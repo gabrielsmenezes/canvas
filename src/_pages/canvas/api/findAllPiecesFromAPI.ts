@@ -1,8 +1,8 @@
 import {api} from "@/shared/api/api";
 import {Piece} from "@/entities/Piece";
 
-export async function findAllPiecesFromAPI(): Promise<Piece> {
-  const response = await api.get<Piece>(
+export async function findAllPiecesFromAPI(): Promise<Piece[]> {
+  const response = await api.get<Piece[]>(
       `/pieces`,
   )
 
