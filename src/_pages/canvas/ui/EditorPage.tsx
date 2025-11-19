@@ -83,9 +83,7 @@ export function EditorPage() {
     decreaseQuantity(piece);
   }
 
-
   return (
-
       <Grid container spacing={3} sx={{p: 3}}>
         <Grid size={{
           xs: 12,
@@ -93,7 +91,6 @@ export function EditorPage() {
         }}>
           <PieceList/>
         </Grid>
-
 
         <Grid size={{
           xs: 12,
@@ -108,7 +105,6 @@ export function EditorPage() {
               onPlace={handlePlace}
           />
         </Grid>
-
 
         <Grid size={{
           xs: 12,
