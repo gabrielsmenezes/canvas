@@ -1,13 +1,16 @@
 "use client";
 
 
-import {DragDropProvider} from "@/providers/DragDropProvider";
+import {DragDropProvider} from "@/contexts/DragDropProvider";
 import {EditorPage} from "@/_pages/canvas/ui/EditorPage";
+import {PiecesProvider} from "@/contexts/PiecesContext";
 
 export default function CanvasPage() {
   return (
       <DragDropProvider>
-        <EditorPage />
+        <PiecesProvider>
+          <EditorPage />
+        </PiecesProvider>
       </DragDropProvider>
   );
 }

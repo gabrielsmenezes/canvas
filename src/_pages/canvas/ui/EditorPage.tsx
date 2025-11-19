@@ -1,12 +1,13 @@
 "use client"
 
 import {useEffect, useState} from "react";
-import { PieceList } from "./PieceList";
+import { PieceList } from "./piece/PieceList";
 import { Stack, Box } from "@mui/material";
 import {PlacedPiece} from "@/entities/PlacedPiece";
 import {Piece} from "@/entities/Piece";
 import { ChapaEditor } from "@/_pages/canvas/ui/ChapaEditor";
 import {PlacedPieceDetail} from "@/_pages/canvas/ui/PlacedPieceDetail";
+import {usePiecesContext} from "@/contexts/PiecesContext";
 
 function isColliding(newPiece: PlacedPiece, existing: PlacedPiece[]) {
 
@@ -44,11 +45,7 @@ function isColliding(newPiece: PlacedPiece, existing: PlacedPiece[]) {
 }
 
 export function EditorPage() {
-  const [pieces, setPieces] = useState<Piece[]>([
-    { id: "1", label: "Porta", width: 120, height: 200, quantity: 2 },
-    { id: "2", label: "Base", width: 100, height: 50, quantity: 1 },
-  ]);
-
+  const {decreaseQuantity} = usePiecesContext();
   const [placed, setPlaced] = useState<PlacedPiece[]>([]);
   const [selectedPiece, setSelectedPiece] = useState<PlacedPiece | null>(null);
 
@@ -83,17 +80,13 @@ export function EditorPage() {
       return;
     }
 
-    setPieces(prev =>
-        prev.map(p =>
-            p.id === piece.id ? { ...p, quantity: p.quantity - 1 } : p
-        )
-    );
+    decreaseQuantity(piece);
   }
 
 
   return (
       <Stack direction="row" spacing={3} sx={{ p: 3 }}>
-        <PieceList pieces={pieces.filter((p) => p.quantity > 0)} />
+        <PieceList />
 
         <Box>
           <ChapaEditor
