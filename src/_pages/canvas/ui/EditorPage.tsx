@@ -2,56 +2,19 @@
 
 import {useEffect, useState} from "react";
 import {PieceList} from "./piece/PieceList";
-import {Stack, Box, Typography, Grid} from "@mui/material";
+import {Grid, Typography} from "@mui/material";
 import {PlacedPiece} from "@/entities/PlacedPiece";
 import {Piece} from "@/entities/Piece";
 import {SheetEditor} from "@/_pages/canvas/ui/SheetEditor";
 import {PlacedPieceDetail} from "@/_pages/canvas/ui/PlacedPieceDetail";
 import {usePiecesContext} from "@/_pages/canvas/contexts/PiecesContext";
+import {usePiecesInSheetContext} from "@/_pages/canvas/contexts/PiecesInSheetContext";
 
-function isColliding(newPiece: PlacedPiece, existing: PlacedPiece[]) {
 
-  console.log("new piece", newPiece);
-  console.log("existing", existing);
-
-  for (const p of existing) {
-    const r1 = {
-      x1: newPiece.x,
-      y1: newPiece.y,
-      x2: newPiece.x + newPiece.width,
-      y2: newPiece.y + newPiece.height,
-    };
-    const r2 = {
-      x1: p.x,
-      y1: p.y,
-      x2: p.x + p.width,
-      y2: p.y + p.height,
-    };
-
-    const isColliding = r1.x1 < r2.x2 && r1.x2 > r2.x1 && r1.y1 < r2.y2 && r1.y2 > r2.y1;
-
-    console.log({
-      r1,
-      r2,
-      isColliding,
-    });
-
-    if (isColliding) {
-      return true;
-    }
-  }
-
-  return false;
-}
 
 export function EditorPage() {
   const {decreaseQuantity} = usePiecesContext();
-  const [placed, setPlaced] = useState<PlacedPiece[]>([]);
-  const [selectedPiece, setSelectedPiece] = useState<PlacedPiece | null>(null);
-
-  useEffect(() => {
-    console.log("🔥 selectedPiece", selectedPiece);
-  }, [selectedPiece]);
+  const {placed, setPiece, selectedPiece} = usePiecesInSheetContext();
 
   function handlePlace(piece: Piece, x: number, y: number) {
     const newItem: PlacedPiece = {
@@ -62,24 +25,11 @@ export function EditorPage() {
       x,
       y,
     };
-
-    let hasCollision = false;
-
-    setPlaced(prev => {
-      hasCollision = isColliding(newItem, prev);
-
-      if (hasCollision) {
-        return prev;
-      }
-
-      return [...prev, newItem];
-    });
-
+    const hasCollision = setPiece(newItem)
     if (hasCollision) {
       alert("Colisão detectada!");
       return;
     }
-
     decreaseQuantity(piece);
   }
 
@@ -97,11 +47,8 @@ export function EditorPage() {
           md: 6,
         }}>
           <SheetEditor
-              chapaWidth={800}
-              chapaHeight={400}
-              placed={placed}
-              selectedPiece={selectedPiece}
-              setSelectedPiece={setSelectedPiece}
+              sheetWidth={800}
+              sheetHeight={400}
               onPlace={handlePlace}
           />
         </Grid>
@@ -111,9 +58,7 @@ export function EditorPage() {
           md: 3,
         }}>
           <Typography variant="h5">Pieces Detail</Typography>
-          {
-              selectedPiece && <PlacedPieceDetail {...selectedPiece} />
-          }
+          {selectedPiece && <PlacedPieceDetail {...selectedPiece} />}
         </Grid>
       </Grid>
   )

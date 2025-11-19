@@ -3,25 +3,21 @@ import {Box} from "@mui/material";
 import {PlacedPiece} from "@/entities/PlacedPiece";
 import {Piece} from "@/entities/Piece";
 import {useRef} from "react";
+import {usePiecesInSheetContext} from "@/_pages/canvas/contexts/PiecesInSheetContext";
 
 type Props = {
-  chapaWidth: number;
-  chapaHeight: number;
-  placed: PlacedPiece[];
-  selectedPiece: PlacedPiece | null;
-  setSelectedPiece: (placedPiece: PlacedPiece | null) => void;
+  sheetWidth: number;
+  sheetHeight: number;
   onPlace: (piece: Piece, x: number, y: number) => void;
 };
 
 export function SheetEditor({
-                              chapaWidth,
-                              chapaHeight,
-                              placed,
-                              selectedPiece,
-                              setSelectedPiece,
+                              sheetWidth,
+                              sheetHeight,
                               onPlace,
                             }: Props) {
   const dropZoneRef = useRef<HTMLDivElement>(null);
+  const {placed, setSelectedPiece, selectedPiece} = usePiecesInSheetContext()
   const [, dropRef] = useDrop<Piece, void, unknown>(() => ({
     accept: "PIECE",
     drop: (item, monitor) => {
@@ -45,8 +41,8 @@ export function SheetEditor({
           }}
           sx={{
             position: "relative",
-            width: chapaWidth,
-            height: chapaHeight,
+            width: sheetWidth,
+            height: sheetHeight,
             border: "3px solid #000",
             backgroundSize: "20px 20px",
             backgroundImage:
