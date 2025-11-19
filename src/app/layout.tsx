@@ -1,10 +1,8 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type {Metadata} from "next";
+import {Geist, Geist_Mono} from "next/font/google";
 import "./globals.css";
-import {Box, CssBaseline, ThemeProvider} from "@mui/material";
-import theme from "@/theme/theme";
+import {Box} from "@mui/material";
 import MuiThemeProvider from "@/theme/MuiThemeProvider";
-import ResponsiveAppBar from "@/shared/ui/AppBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,7 +28,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
       <MuiThemeProvider>
-        <ResponsiveAppBar/>
         <Box margin={4}>
           {children}
         </Box>
