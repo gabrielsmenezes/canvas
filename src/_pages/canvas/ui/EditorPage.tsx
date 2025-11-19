@@ -14,7 +14,7 @@ import {usePiecesInSheetContext} from "@/_pages/canvas/contexts/PiecesInSheetCon
 
 export function EditorPage() {
   const {decreaseQuantity} = usePiecesContext();
-  const {placed, setPiece, selectedPiece} = usePiecesInSheetContext();
+  const { setPiece, selectedPiece} = usePiecesInSheetContext();
 
   function handlePlace(piece: Piece, x: number, y: number) {
     const newItem: PlacedPiece = {
