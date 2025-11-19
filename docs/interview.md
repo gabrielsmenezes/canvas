@@ -4,12 +4,11 @@ Releases:
     ![](C:\Users\mrgab\Documents\gabrielsmenezes\canvas\docs\v0.0.1.png)
   - v0.0.2 - RF 3.2 and 3.3 - Counting and Collision policy
     ![](C:\Users\mrgab\Documents\gabrielsmenezes\canvas\docs\v0.0.2.png)
-  
-  - RF 3.4 - Selection and Attributes
-
-
+  - v0.0.3 - RF 3.4 - Selection and Attributes
+    ![](C:\Users\mrgab\Documents\gabrielsmenezes\canvas\docs\v0.0.3.png)
 
 
 
 Highlights:
 - Simplified Feature-sliced architecture (directory structure)
+- Drag-and-Drop lib (react-dnd)

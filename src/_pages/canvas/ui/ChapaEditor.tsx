@@ -8,8 +8,8 @@ type Props = {
   chapaWidth: number;
   chapaHeight: number;
   placed: PlacedPiece[];
-  selectedId: string | null;
-  setSelectedId: (id: string | null) => void;
+  selectedPiece: PlacedPiece | null;
+  setSelectedPiece: (placedPiece: PlacedPiece | null) => void;
   onPlace: (piece: Piece, x: number, y: number) => void;
 };
 
@@ -17,8 +17,8 @@ export function ChapaEditor({
                               chapaWidth,
                               chapaHeight,
                               placed,
-                              selectedId,
-                              setSelectedId,
+                              selectedPiece,
+                              setSelectedPiece,
                               onPlace,
                             }: Props) {
   const dropZoneRef = useRef<HTMLDivElement>(null);
@@ -56,7 +56,7 @@ export function ChapaEditor({
         {placed.map((p) => (
             <Box
                 key={p.id}
-                onClick={() => setSelectedId(p.id)}
+                onClick={() => setSelectedPiece(p)}
                 sx={{
                   position: "absolute",
                   left: p.x,
@@ -65,7 +65,7 @@ export function ChapaEditor({
                   height: p.height,
                   background: "rgba(25, 118, 210, 0.4)",
                   border:
-                      p.id === selectedId ? "3px solid red" : "1px solid #1976d2",
+                      p.id === selectedPiece?.id ? "3px solid red" : "1px solid #1976d2",
                 }}
             />
         ))}

@@ -6,6 +6,7 @@ import { Stack, Box } from "@mui/material";
 import {PlacedPiece} from "@/entities/PlacedPiece";
 import {Piece} from "@/entities/Piece";
 import { ChapaEditor } from "@/_pages/canvas/ui/ChapaEditor";
+import {PlacedPieceDetail} from "@/_pages/canvas/ui/PlacedPieceDetail";
 
 function isColliding(newPiece: PlacedPiece, existing: PlacedPiece[]) {
 
@@ -49,11 +50,11 @@ export function EditorPage() {
   ]);
 
   const [placed, setPlaced] = useState<PlacedPiece[]>([]);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedPiece, setSelectedPiece] = useState<PlacedPiece | null>(null);
 
   useEffect(() => {
-    console.log("🔥 PLACED", placed);
-  }, [placed]);
+    console.log("🔥 selectedPiece", selectedPiece);
+  }, [selectedPiece]);
 
   function handlePlace(piece: Piece, x: number, y: number) {
     const newItem: PlacedPiece = {
@@ -65,56 +66,23 @@ export function EditorPage() {
       y,
     };
 
-    // Usar placed atual sem closure
-    setPlaced(prev => {
-      // Verifica colisão com o estado atualizado
-      if (isColliding(newItem, prev)) {
-        alert("Colisão detectada!");
-        return prev; // não altera
-      }
-
-      // IMPORTANTE: só retorna o novo placed
-      return [...prev, newItem];
-    });
-
-    // Atualiza quantity (somente 1 vez)
-    setPieces(prev =>
-        prev.map(p =>
-            p.id === piece.id ? { ...p, quantity: p.quantity - 1 } : p
-        )
-    );
-  }
-
-  function handlePlace(piece: Piece, x: number, y: number) {
-    const newItem: PlacedPiece = {
-      id: crypto.randomUUID(),
-      pieceId: piece.id,
-      width: piece.width,
-      height: piece.height,
-      x,
-      y,
-    };
-
-    // 1️⃣ Verifica colisão usando o valor ATUAL do estado
     let hasCollision = false;
 
     setPlaced(prev => {
       hasCollision = isColliding(newItem, prev);
 
       if (hasCollision) {
-        return prev; // ❌ não adiciona
+        return prev;
       }
 
-      return [...prev, newItem]; // ✔ adiciona
+      return [...prev, newItem];
     });
 
-    // 2️⃣ Se teve colisão, NÃO continuar
     if (hasCollision) {
       alert("Colisão detectada!");
       return;
     }
 
-    // 3️⃣ Atualiza quantity somente se NÃO houve colisão
     setPieces(prev =>
         prev.map(p =>
             p.id === piece.id ? { ...p, quantity: p.quantity - 1 } : p
@@ -132,11 +100,15 @@ export function EditorPage() {
               chapaWidth={800}
               chapaHeight={400}
               placed={placed}
-              selectedId={selectedId}
-              setSelectedId={setSelectedId}
+              selectedPiece={selectedPiece}
+              setSelectedPiece={setSelectedPiece}
               onPlace={handlePlace}
           />
         </Box>
+
+        <>
+          {selectedPiece && <PlacedPieceDetail {...selectedPiece} />}
+        </>
       </Stack>
   );
 }
