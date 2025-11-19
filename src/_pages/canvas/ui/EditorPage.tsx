@@ -1,11 +1,11 @@
 "use client"
 
 import {useEffect, useState} from "react";
-import { PieceList } from "./piece/PieceList";
-import { Stack, Box } from "@mui/material";
+import {PieceList} from "./piece/PieceList";
+import {Stack, Box, Typography, Grid} from "@mui/material";
 import {PlacedPiece} from "@/entities/PlacedPiece";
 import {Piece} from "@/entities/Piece";
-import { SheetEditor } from "@/_pages/canvas/ui/SheetEditor";
+import {SheetEditor} from "@/_pages/canvas/ui/SheetEditor";
 import {PlacedPieceDetail} from "@/_pages/canvas/ui/PlacedPieceDetail";
 import {usePiecesContext} from "@/_pages/canvas/contexts/PiecesContext";
 
@@ -85,10 +85,20 @@ export function EditorPage() {
 
 
   return (
-      <Stack direction="row" spacing={3} sx={{ p: 3 }}>
-        <PieceList />
 
-        <Box>
+      <Grid container spacing={3} sx={{p: 3}}>
+        <Grid size={{
+          xs: 12,
+          md: 3,
+        }}>
+          <PieceList/>
+        </Grid>
+
+
+        <Grid size={{
+          xs: 12,
+          md: 6,
+        }}>
           <SheetEditor
               chapaWidth={800}
               chapaHeight={400}
@@ -97,11 +107,18 @@ export function EditorPage() {
               setSelectedPiece={setSelectedPiece}
               onPlace={handlePlace}
           />
-        </Box>
+        </Grid>
 
-        <>
-          {selectedPiece && <PlacedPieceDetail {...selectedPiece} />}
-        </>
-      </Stack>
-  );
+
+        <Grid size={{
+          xs: 12,
+          md: 3,
+        }}>
+          <Typography variant="h5">Pieces Detail</Typography>
+          {
+              selectedPiece && <PlacedPieceDetail {...selectedPiece} />
+          }
+        </Grid>
+      </Grid>
+  )
 }
