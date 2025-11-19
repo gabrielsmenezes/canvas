@@ -3,7 +3,7 @@ import {Piece} from "@/entities/Piece";
 
 export async function findAllPiecesFromAPI(): Promise<Piece> {
   const response = await api.get<Piece>(
-      `/my-pieces`,
+      `/pieces`,
   )
 
   if (response.status === 200) {

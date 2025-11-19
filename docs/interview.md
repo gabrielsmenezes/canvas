@@ -9,6 +9,7 @@ Releases:
   - v0.0.4 - Layout and state management improvements
     ![](C:\Users\mrgab\Documents\gabrielsmenezes\canvas\docs\v0.0.4.png)
   - v0.0.5 - Mocking the API call
+  - v0.0.6 - RF 2.1 and 2.2 - Listing and Creating Pieces
 
 Highlights:
 - Simplified Feature-sliced architecture (directory structure)

@@ -2,15 +2,13 @@
 
 import {useEffect, useState} from "react";
 import {PieceList} from "./piece/PieceList";
-import {Grid, Typography} from "@mui/material";
+import {Grid, Stack, Typography} from "@mui/material";
 import {PlacedPiece} from "@/entities/PlacedPiece";
 import {Piece} from "@/entities/Piece";
 import {SheetEditor} from "@/_pages/canvas/ui/SheetEditor";
 import {PlacedPieceDetail} from "@/_pages/canvas/ui/PlacedPieceDetail";
 import {usePiecesContext} from "@/_pages/canvas/contexts/PiecesContext";
 import {usePiecesInSheetContext} from "@/_pages/canvas/contexts/PiecesInSheetContext";
-
-
 
 export function EditorPage() {
   const {decreaseQuantity} = usePiecesContext();
@@ -38,8 +36,9 @@ export function EditorPage() {
         <Grid size={{
           xs: 12,
           md: 3,
-        }}>
-          <PieceList/>
+        }}
+        >
+            <PieceList/>
         </Grid>
 
         <Grid size={{

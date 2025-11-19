@@ -1,10 +1,12 @@
 import {ReactNode, createContext, useContext, useMemo, useState, useEffect} from "react"
 import {Piece} from "@/entities/Piece";
 import {findAllPiecesFromAPI} from "@/_pages/canvas/api/findAllPiecesFromAPI";
+import {addNewPieceFromAPI} from "@/_pages/canvas/api/addNewPieceFromAPI";
 
 interface PiecesContextType {
   pieces: Piece[]
   decreaseQuantity: (piece: Piece) => void
+  createNewPiece: (piece: Piece) => void
 }
 
 const PiecesContext = createContext<PiecesContextType | undefined>(undefined)
@@ -30,14 +32,21 @@ export function PiecesProvider({children}: Readonly<{ children: ReactNode }>) {
     );
   }
 
+  function createNewPiece(piece: Piece) {
+    addNewPieceFromAPI(piece);
+    setPieces(prev => [...prev, piece]);
+  }
+
   const contextValue = useMemo(() => {
     return {
       pieces,
       decreaseQuantity,
+      createNewPiece
     }
   }, [
     pieces,
     decreaseQuantity,
+    createNewPiece
   ])
 
   return (
