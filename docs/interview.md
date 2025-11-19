@@ -1,13 +1,13 @@
 Releases:
 - v0.1.0 - Canvas
   - v0.0.1 - RF 3.1 - Drag-and-Drop
-    ![](C:\Users\mrgab\Documents\gabrielsmenezes\canvas\docs\v0.0.1.png)
+    ![v0.0.1](C:\Users\mrgab\Documents\gabrielsmenezes\canvas\docs\v0.0.1.png)
   - v0.0.2 - RF 3.2 and 3.3 - Counting and Collision policy
-    ![](C:\Users\mrgab\Documents\gabrielsmenezes\canvas\docs\v0.0.2.png)
+    ![v0.0.2](C:\Users\mrgab\Documents\gabrielsmenezes\canvas\docs\v0.0.2.png)
   - v0.0.3 - RF 3.4 - Selection and Attributes
-    ![](C:\Users\mrgab\Documents\gabrielsmenezes\canvas\docs\v0.0.3.png)
+    ![v0.0.3](C:\Users\mrgab\Documents\gabrielsmenezes\canvas\docs\v0.0.3.png)
   - v0.0.4 - Layout and state management improvements
-    ![](C:\Users\mrgab\Documents\gabrielsmenezes\canvas\docs\v0.0.4.png)
+    ![v0.0.4](C:\Users\mrgab\Documents\gabrielsmenezes\canvas\docs\v0.0.4.png)
   - v0.0.5 - Mocking the API call
   - v0.0.6 - RF 2.1 and 2.2 - Listing and Creating Pieces
 
