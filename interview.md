@@ -1,10 +1,10 @@
 Releases:
 - v0.1.0 - Canvas
-  - RF 3.1 - Drag-and-Drop
-  - v0.0.1
+  - v0.0.1 - RF 3.1 - Drag-and-Drop
     ![](C:\Users\mrgab\Documents\gabrielsmenezes\canvas\docs\v0.0.1.png)
-  - RF 3.2 - Counting
-  - RF 3.3 - Collision policy
+  - v0.0.2 - RF 3.2 and 3.3 - Counting and Collision policy
+    ![](C:\Users\mrgab\Documents\gabrielsmenezes\canvas\docs\v0.0.2.png)
+  
   - RF 3.4 - Selection and Attributes
 
 
